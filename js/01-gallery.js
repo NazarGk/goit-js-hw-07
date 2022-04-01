@@ -37,13 +37,15 @@ function clickOnGalleryPhoto(event) {
     }
 
     const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}">`)
-
+    <img src="${event.target.dataset.source}">`,
+    {
+      onShow: (instance) => {window.addEventListener('keydown', EscKeyForCloseModalWindow)},
+      onClose: (instance) => {window.addEventListener('keydown', EscKeyForCloseModalWindow)}
+    
+    
+    });
 
 instance.show();
-
-
-window.addEventListener('keydown', EscKeyForCloseModalWindow);
 
 function EscKeyForCloseModalWindow(event){
     console.log(event.code)
